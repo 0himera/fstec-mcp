@@ -1,0 +1,20 @@
+{
+    "rawEnvs": {
+        "PORT": {
+            "isRequired": false,
+            "description": "Порт MCP сервера",
+            "defaultValue": "8000"
+        },
+        "HOST": {
+            "isRequired": false,
+            "description": "Хост для привязки MCP сервера",
+            "defaultValue": "0.0.0.0"
+        },
+        "VULLIST_PATH": {
+            "isRequired": false,
+            "description": "Путь к файлу vullist.xlsx с базой ФСТЭК",
+            "defaultValue": "vullist.xlsx"
+        }
+    },
+    "secretEnvs": {}
+}

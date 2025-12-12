@@ -1,0 +1,44 @@
+# Конфигурация MCP сервера FSTEC Excel Search
+id: "fstec-excel-search"
+name: "FSTEC Excel Search"
+description: |
+  MCP сервер для поиска уязвимостей в локальной базе данных ФСТЭК (vullist.xlsx).
+  Обеспечивает AI-агенту доступ к информации об угрозах безопасности.
+  Данные загружаются в оперативную память для мгновенного поиска.
+
+tools:
+  - name: "search_vulnerabilities"
+    description: "Поиск уязвимостей по ключевым словам"
+    parameters:
+      query: "string - Поисковая фраза (nginx, Apache, 1C)"
+      limit: "integer - Максимальное количество результатов (по умолчанию: 5)"
+  
+  - name: "get_vulnerability_details"
+    description: "Получение полной информации об уязвимости по BDU ID"
+    parameters:
+      bdu_id: "string - Идентификатор уязвимости (BDU:20xx-xxxxx)"
+
+rawEnvs:
+  PORT:
+    isRequired: false
+    description: "Порт MCP сервера"
+    defaultValue: "8000"
+  VULLIST_PATH:
+    isRequired: false
+    description: "Путь к файлу vullist.xlsx"
+    defaultValue: "vullist.xlsx"
+
+secretEnvs: {}
+
+image_uri: ${IMAGE_URI}
+license_url: "https://bdu.fstec.ru/"
+tags: ["security", "vulnerabilities", "fstec", "excel", "search"]
+category: "Security"
+versions: ["1.0.0"]
+
+exposed_ports:
+  - port: 8000
+    protocol: "HTTP"
+
+status: "MCP_SERVER_PREDEFINED_STATUS_AVAILABLE"
+type: "MCP_SERVER_PREDEFINED_TYPE_INTERNAL"
